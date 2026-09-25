@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 公開ドメインが確定したら、あわせてサイトマップを生成し、下行を有効にしてください。
+# Sitemap: https://example.jp/sitemap.xml

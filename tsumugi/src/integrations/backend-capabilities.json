@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "contract_type": "frontend-capabilities",
+  "backend_target": "supabase",
+  "capabilities": [
+    {
+      "id": "contact.inquiry.submit",
+      "kind": "command",
+      "actor": "anonymous-visitor",
+      "persistence": "remote",
+      "sensitivity": "personal",
+      "frontend_implementation": "mock",
+      "frontend_entrypoints": ["src/components/ContactForm.tsx"],
+      "port_entrypoints": ["src/data/ports/contact-inquiry.ts"],
+      "mock_adapter_entrypoints": ["src/data/adapters/mock/contact-inquiry.ts"],
+      "acceptance": [
+        {
+          "id": "contact.inquiry.valid-submission-accepted",
+          "expectation": "保護者のお名前・生徒の学年・メールアドレス・お問い合わせ内容が揃った送信は受理され、送信完了の状態が表示される",
+          "layer": "end-to-end"
+        },
+        {
+          "id": "contact.inquiry.invalid-submission-blocked",
+          "expectation": "必須項目の欠落や不正なメールアドレスはクライアント側で検出され、送信されない",
+          "layer": "end-to-end"
+        },
+        {
+          "id": "contact.inquiry.destination-not-configured",
+          "expectation": "送信先が未設定の間は、送信されたように見せず、未設定であることを利用者に明示する",
+          "layer": "end-to-end"
+        },
+        {
+          "id": "contact.inquiry.visitor-cannot-read-inquiries",
+          "expectation": "匿名の訪問者が他の利用者の送信内容を読み出せない",
+          "layer": "authorization"
+        }
+      ]
+    }
+  ],
+  "composition_root": "src/data/composition-root.ts"
+}
