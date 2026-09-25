@@ -17,7 +17,7 @@ export function isPlaceholder(value: string): boolean {
 
 export const SCHOOL = {
   name: "学習舎 つむぎ",
-  nameWithSuffix: "学習舎つむぎ",
+  nameWithSuffix: "学習舎つむぎTESTTEST",
   concept: "一人ひとりの学びに、寄り添う。",
   postalCode: "〒●●●-●●●●",
   addressRegion: "熊本県",
